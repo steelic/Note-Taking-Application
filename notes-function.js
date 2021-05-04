@@ -10,20 +10,55 @@ function getSavedNotes() {
     }
 }
 
+// Saving a note.
+function saveNote() {
+    localStorage.setItem('notes', JSON.stringify(notes))
+}
+
+
+// Deleting a note.
+const removeNote = function (id)
+{
+    const noteIndex = notes.findIndex(function (note)
+    {
+        return note.id === id
+    })
+    if (noteIndex > -1)
+    {
+        notes.splice(noteIndex, 1)
+    }
+}
+
 // Generating DOM structure for a new note.
 function generateNotesDOM(note) {
-    const noteElement = document.createElement('p')
+    const noteElement = document.createElement('div')
+    const textElement = document.createElement('span')
 
+    // Creating a button to delete notes.
+    const button = document.createElement('button')
+    button.textContent = 'Delete'
+    noteElement.appendChild(button)
+    button.addEventListener('click', function (event)
+    {
+        removeNote(note.id)
+        saveNote()
+        renderedNotes(notes, filters)
+    })
+
+    // Creating a title for unnamed notes.
     if (note.title.length > 0) {
-        noteElement.textContent = note.title
+       textElement.textContent = note.title
     }
     else {
-        noteElement.textContent = 'Untitled Note'
+        textElement.textContent = 'Untitled Note'
     }
+  
+    noteElement.appendChild(textElement)
+
     return noteElement
 }
 
-// Rendering application Notes
+// Rendering notes
 const renderedNotes = function(notes, filters)
 {
     const filteredNotes = notes.filter(function (note)
