@@ -10,23 +10,31 @@ renderedNotes(notes, filters)
 document.querySelector('#create-note').addEventListener('click', function (event) 
 {
     notes.push({
+        id: uuidv4(),
         title: "",
         body: ""
     })
-    localStorage.setItem('notes', JSON.stringify(notes))
+    saveNote()
     renderedNotes(notes, filters)
 })
 
-document.querySelector('#remove-all-notes').addEventListener('click', function (e) {
+document.querySelector('#remove-all-notes').addEventListener('click', function (e) 
+{
+    while(notes.length > 0) 
+    {
+        notes.pop()
+    }
     localStorage.clear()
     document.querySelector('#notes').innerHTML =  ''
 })
 
-document.querySelector('#search-text').addEventListener('input', function (e) {
+document.querySelector('#search-text').addEventListener('input', function (e) 
+{
     filters.searchText = e.target.value
     renderedNotes(notes, filters)
 })
 
-document.querySelector('#filter-by').addEventListener('change', function (e) {
+document.querySelector('#filter-by').addEventListener('change', function (e) 
+{
     console.log(e.target.value)
 })
