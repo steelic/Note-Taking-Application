@@ -9,13 +9,14 @@ renderedNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', function (event) 
 {
+    const id = uuidv4()
     notes.push({
-        id: uuidv4(),
+        id: id,
         title: "",
         body: ""
     })
     saveNote()
-    renderedNotes(notes, filters)
+    location.assign(`/edit.html#${id}`)
 })
 
 document.querySelector('#remove-all-notes').addEventListener('click', function (e) 
