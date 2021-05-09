@@ -1,0 +1,10 @@
+This is a basic note taking web application.
+
+There are six main files needed to run this application.
+
+1. index.html. This file contains basic HTML functionality such as buttons and other page elements, and running src files.
+2. edit.html. This file contains HTML functionality specifically for editing notes, which will open a new page in the application.
+3. note-app.js. This file runs functions which have been refactored in the notes-functions.js file.
+4. notes-functions.js. This file contains the vital functions needing for running the application, including taking notes, saving notes to localStorage, and DOM rendering.
+5. notes-edit.js. This file contains basic functions used for editing notes.
+6. uuidv4.js. This file contains a function that is used to give each note a unqiue reference ID, which is used for a variety of purposes.
